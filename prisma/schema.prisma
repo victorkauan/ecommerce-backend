@@ -17,6 +17,8 @@ model Customer {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  sales Sale[]
 }
 
 model ProductCategory {
@@ -27,7 +29,7 @@ model ProductCategory {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Product Product[]
+  products Product[]
 }
 
 model Product {
@@ -39,5 +41,30 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ProductCategory ProductCategory[]
+  productCategories ProductCategory[]
+  orders            Order[]
+}
+
+model Order {
+  id        Int @id @default(autoincrement())
+  productId Int
+  saleId    Int
+  quantity  Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id])
+  sale    Sale    @relation(fields: [saleId], references: [id])
+}
+
+model Sale {
+  id         Int @id @default(autoincrement())
+  customerId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  customer Customer @relation(fields: [customerId], references: [id])
+  orders   Order[]
 }

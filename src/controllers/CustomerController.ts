@@ -18,6 +18,16 @@ export class CustomerController {
       });
     }
 
+    const foundCustomer = await prisma.customer.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (foundCustomer) {
+      return res.status(409).json({ error: 'Customer already exists.' });
+    }
+
     const customer = await prisma.customer.create({
       data: {
         firstName,

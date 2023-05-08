@@ -7,7 +7,7 @@ export class ProductController {
   async index(req: Request, res: Response) {
     const products = await prisma.product.findMany({
       include: {
-        ProductCategory: true,
+        productCategories: true,
       },
     });
     return res.status(200).json({ products });
@@ -46,7 +46,7 @@ export class ProductController {
         name,
         description,
         price,
-        ProductCategory: {
+        productCategories: {
           connect: productCategoryIds.map((id: number) => ({ id })),
         },
       },
@@ -102,7 +102,7 @@ export class ProductController {
         name,
         description,
         price,
-        ProductCategory: {
+        productCategories: {
           set: productCategoryIds?.map((id: number) => ({ id })),
         },
       },
