@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export class ProductCategoryController {
   async index(req: Request, res: Response) {
     const productCategories = await prisma.productCategory.findMany();
-    return res.status(200).json({ productCategories });
+    return res.status(200).json(productCategories);
   }
 
   async create(req: Request, res: Response) {
@@ -25,7 +25,7 @@ export class ProductCategoryController {
       },
     });
 
-    return res.status(201).json({ productCategory });
+    return res.status(201).json(productCategory);
   }
 
   async update(req: Request, res: Response) {
@@ -58,7 +58,7 @@ export class ProductCategoryController {
       },
     });
 
-    return res.status(200).json({ productCategory });
+    return res.status(200).json(productCategory);
   }
 
   async destroy(req: Request, res: Response) {

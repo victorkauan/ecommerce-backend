@@ -10,7 +10,7 @@ export class ProductController {
         productCategories: true,
       },
     });
-    return res.status(200).json({ products });
+    return res.status(200).json(products);
   }
 
   async create(req: Request, res: Response) {
@@ -52,7 +52,7 @@ export class ProductController {
       },
     });
 
-    return res.status(201).json({ product });
+    return res.status(201).json(product);
   }
 
   async update(req: Request, res: Response) {
@@ -108,7 +108,7 @@ export class ProductController {
       },
     });
 
-    return res.status(200).json({ product });
+    return res.status(200).json(product);
   }
 
   async destroy(req: Request, res: Response) {

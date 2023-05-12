@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export class CustomerController {
   async index(req: Request, res: Response) {
     const customers = await prisma.customer.findMany();
-    return res.status(200).json({ customers });
+    return res.status(200).json(customers);
   }
 
   async create(req: Request, res: Response) {
@@ -38,7 +38,7 @@ export class CustomerController {
       },
     });
 
-    return res.status(201).json({ customer });
+    return res.status(201).json(customer);
   }
 
   async update(req: Request, res: Response) {
@@ -75,7 +75,7 @@ export class CustomerController {
       },
     });
 
-    return res.status(200).json({ customer });
+    return res.status(200).json(customer);
   }
 
   async destroy(req: Request, res: Response) {

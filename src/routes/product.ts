@@ -6,7 +6,7 @@ const productController = new ProductController();
 
 router.get('/', productController.index);
 router.post('/', productController.create);
-router.patch('/:id', productController.update);
+router.put('/:id', productController.update);
 router.delete('/:id', productController.destroy);
 
 export { router };

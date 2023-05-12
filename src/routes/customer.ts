@@ -6,7 +6,7 @@ const customerController = new CustomerController();
 
 router.get('/', customerController.index);
 router.post('/', customerController.create);
-router.patch('/:id', customerController.update);
+router.put('/:id', customerController.update);
 router.delete('/:id', customerController.destroy);
 
 export { router };

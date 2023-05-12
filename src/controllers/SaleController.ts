@@ -14,7 +14,7 @@ export class SaleController {
       },
     });
 
-    return res.status(200).json({ sales });
+    return res.status(200).json(sales);
   }
 
   async create(req: Request, res: Response) {
@@ -76,7 +76,17 @@ export class SaleController {
       });
     }
 
-    return res.status(201).json({ sale });
+    const createdSale = await prisma.sale.findUnique({
+      where: {
+        id: sale.id,
+      },
+      include: {
+        customer: true,
+        orders: true,
+      },
+    });
+
+    return res.status(201).json(createdSale);
   }
 
   async update(req: Request, res: Response) {
@@ -164,7 +174,17 @@ export class SaleController {
       },
     });
 
-    return res.status(200).json({ sale });
+    const updatedSale = await prisma.sale.findUnique({
+      where: {
+        id: sale.id,
+      },
+      include: {
+        customer: true,
+        orders: true,
+      },
+    });
+
+    return res.status(200).json(updatedSale);
   }
 
   async destroy(req: Request, res: Response) {
